@@ -1,160 +1,188 @@
-// var  val;
 
-// val = document.all;
-// val = document.all[2];
-// val = document.all.length;
-// val = document.head;
-// val = document.body;
-// val = document.domain;
-// val = document.forms;
- 
-
-// console.log(val);
+// const li  = document.createElement('li');
 
 
+// li.className = 'collection-item';
 
 
+// li.id = 'new-item';
+
+// li.setAttribute('title', 'New Item');
 
 
-
-// console.log(document.getElementById('task-title'));
-
-
-// console.log(document.getElementById('task-title').id);
-// console.log(document.getElementById('task-title').className);
-
-// const taskTitle = document.getElementById('task-title');
+// li.appendChild(document.createTextNode('Hello World'));
 
 
-// taskTitle.style.background = '#333';
-// taskTitle.style.color = '#fff';
-// taskTitle.style.padding = '5px';
-// // taskTitle.style.display = 'none';
+// const link = document.createElement('a');
+
+// link.className = 'delete-item secondary-content';
+
+// link.innerHTML = '<i class="fa fa-remove"></i>';
+
+// li.appendChild(link);
 
 
-// taskTitle.textContent = 'Task List';
-// taskTitle.innerText = 'My Tasks';
-// taskTitle.innerHTML = '<span style="color:red">Task List</span>';
+// document.querySelector('ul.collection').appendChild(li);
+
+// console.log(li);
 
 
 
-// console.log(document.querySelector('#task-title'));
-// console.log(document.querySelector('.card-title'));
-// console.log(document.querySelector('h5'));
+// const newHeading = document.createElement('h2');
 
-// document.querySelector('li').style.color = 'red';
-// document.querySelector('ul li').style.color = 'blue';
+// newHeading.id = 'task-title';
 
-// document.querySelector('li:last-child').style.color = 'red';
-// document.querySelector('li:nth-child(3)').style.color = 'yellow';
-// document.querySelector('li:nth-child(4)').textContent = 'Hello World';
-// document.querySelector('li:nth-child(odd)').style.background = '#ccc';
-// document.querySelector('li:nth-child(even)').style.background = '#f4f4f4';
+// newHeading.appendChild(document.createTextNode('Task List'));
 
 
+// const oldHeading = document.getElementById('task-title');
+
+// const cardAction = document.querySelector('.card-action');
 
 
+// cardAction.replaceChild(newHeading, oldHeading);
 
 
-// const items = document.getElementsByClassName('collection-item');
-// console.log(items);
-// console.log(items[0]);
-// items[0].style.color = 'red';
-// items[3].textContent = 'Hello';
+// const lis = document.querySelectorAll('li');
+// const list = document.querySelector('ul');
 
-// const listItems = document.querySelector('ul').getElementsByClassName('collection-item');
-
-// console.log(listItems);
+// lis[0].remove();
 
 
-// let lis = document.getElementsByTagName('li');
-// console.log(lis);
-// console.log(lis[0]);
-// lis[0].style.color = 'red';
-// lis[3].textContent = 'Hello';
+// list.removeChild(lis[3]);
 
 
-// lis = Array.from(lis);
-
-// lis.reverse();
-
-// lis.forEach(function(li, index){
-//   console.log(li.className);
-//   li.textContent = `${index}: Hello`;
-// });
-
-// console.log(lis);
-
-
-// const items = document.querySelectorAll('ul.collection li.collection-item');
-
-// items.forEach(function(item, index){
-//     item.textContent = `${index}: Hello`;
-// });
-
-// const liOdd = document.querySelectorAll('li:nth-child(odd)');
-// const liEven = document.querySelectorAll('li:nth-child(even)');
-
-// liOdd.forEach(function(li, index){
-//   li.style.background = '#ccc';
-// });
-
-// for(let i = 0; i < liEven.length; i++){
-//   liEven[i].style.background = '#f4f4f4';
-// }
-
-
-// console.log(items);
-
-
-
-
+// const firstLi = document.querySelector('li:first-child');
+// const link = firstLi.children[0];
 
 // let val;
 
-// const list = document.querySelector('ul.collection');
-// const listItem = document.querySelector('li.collection-item:first-child');
 
-// val = listItem;
-// val = list;
-
-
-// val = list.childNodes;
-// val = list.childNodes[0];
-// val = list.childNodes[0].nodeName;
-// val = list.childNodes[3].nodeType;
+// val = link.className;
+// val = link.classList;
+// val = link.classList[0];
+// link.classList.add('test');
+// link.classList.remove('test');
+// val = link;
 
 
+// val = link.getAttribute('href');
+// val = link.setAttribute('href', 'http://google.com');
+// link.setAttribute('title', 'Google');
+// val = link.hasAttribute('title');
+// link.removeAttribute('title');
+// val = link;
 
-
-
-// val = list.children;
-// val = list.children[1];
-// list.children[1].textContent = 'Hello';
-
-// list.children[3].children[0].id = 'test-link';
-// val = list.children[3].children[0];
-
-
-// val = list.firstChild;
-// val = list.firstElementChild;
-
-
-// val = list.lastChild;
-// val = list.lastElementChild;
-
-
-// val = list.childElementCount;
-
-// val = listItem.parentNode;
-// val = listItem.parentElement;
-// val = listItem.parentElement.parentElement;
-
-
-// val = listItem.nextSibling;
-// val = listItem.nextElementSibling.nextElementSibling.previousElementSibling;
-
-
-// val = listItem.previousSibling;
-// val = listItem.previousElementSibling;
 // console.log(val);
+
+
+
+
+// document.querySelector('.clear-tasks').addEventListener('click', onClick);
+
+// function onClick(e){
+//   //console.log('Clicked');
+
+//   let val;
+
+//   val = e;
+
+  
+//   val = e.target;
+//   val = e.target.id;
+//   val = e.target.className;
+//   val = e.target.classList;
+
+  
+//   val = e.type;
+
+  
+//   val = e.timeStamp;
+
+  
+//   val = e.clientY;
+//   val = e.clientX;
+
+  
+//   val = e.offsetY;
+//   val = e.offsetX;
+
+//   console.log(val);
+// }
+
+// const clearBtn = document.querySelector('.clear-tasks');
+// const card = document.querySelector('.card');
+// const heading = document.querySelector('h5');
+
+// // Click
+// // clearBtn.addEventListener('click', runEvent);
+// // Doubleclick
+// // clearBtn.addEventListener('dblclick', runEvent);
+// // Mousedown
+// // clearBtn.addEventListener('mousedown', runEvent);
+// // Mouseup
+// // clearBtn.addEventListener('mouseup', runEvent);
+// // Mouseenter
+// // card.addEventListener('mouseenter', runEvent);
+// // Mouseleave
+// // card.addEventListener('mouseleave', runEvent);
+// // Mouseover
+// // card.addEventListener('mouseover', runEvent);
+// // Mouseout
+// // card.addEventListener('mouseout', runEvent);
+// // Mousemove
+// card.addEventListener('mousemove', runEvent);
+
+
+// function runEvent(e) {
+//   console.log(`EVENT TYPE: ${e.type}`);
+
+//   heading.textContent= `MouseX: ${e.offsetX} MouseY: ${e.offsetY}`;
+
+//   document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 40)`;
+// }
+
+
+
+
+// const form = document.querySelector('form');
+// const taskInput = document.getElementById('task');
+// const heading = document.querySelector('h5');
+// const select = document.querySelector('select');
+
+
+// taskInput.value = '';
+
+// // form.addEventListener('submit', runEvent);
+
+// // Keydown
+// //taskInput.addEventListener('keydown', runEvent);
+// // Keydown
+// // taskInput.addEventListener('keyup', runEvent);
+// // Keypress
+// // taskInput.addEventListener('keypress', runEvent);
+// // Focus
+// // taskInput.addEventListener('focus', runEvent);
+// // Blur
+// // taskInput.addEventListener('blur', runEvent);
+// // Cut
+// // taskInput.addEventListener('cut', runEvent);
+// // Paste
+// // taskInput.addEventListener('paste', runEvent);
+// // Input
+// // taskInput.addEventListener('input', runEvent);
+// // Change
+// select.addEventListener('change', runEvent);
+
+// function runEvent(e){
+//   console.log(`EVENT TYPE: ${e.type}`);
+
+//   //console.log(e.target.value);
+
+//   // heading.innerText = e.target.value;
+
+//   // Get input value
+//   // console.log(taskInput.value);
+
+//   // e.preventDefault();
+// }
