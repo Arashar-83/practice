@@ -1,166 +1,68 @@
-// Define UI Vars
-const form = document.querySelector('#task-form');
-const taskList = document.querySelector('.collection');
-const clearBtn = document.querySelector('.clear-tasks');
-const filter = document.querySelector('#filter');
-const taskInput = document.querySelector('#task');
+// function Person(name ,dob){
+//     this.Name = name
+//     // this.Age = age
+//     this.birthday = new Date(dob)
+//     // console.log(this)
+//     this.caculateAge = function(){
+//         const diff = Date.now() - this.birthday.getTime()
+//         const wa = new Date(diff)
+//         return Math.abs(wa.getUTCFullYear() - 1970)
+//     }
+// }
 
-// Load all event listeners
-loadEventListeners();
+// const Arash = new Person('arash','2/7/2005')
+// console.log(Arash.caculateAge())
+// // console.log(Arash)
 
-// Load all event listeners
-function loadEventListeners() {
-  // DOM Load event
-  document.addEventListener('DOMContentLoaded', getTasks);
-  // Add task event
-  form.addEventListener('submit', addTask);
-  // Remove task event
-  taskList.addEventListener('click', removeTask);
-  // Clear task event
-  clearBtn.addEventListener('click', clearTasks);
-  // Filter tasks event
-  filter.addEventListener('keyup', filterTasks);
+// const name1 = 'brad'
+// const name2 = new String('tom')
+// console.log(typeof name2)
+
+// function Person(name ,dob){
+//     this.Name = name
+//     // this.Age = age
+//     this.birthday = new Date(dob)
+//     // console.log(this)
+    
+// }
+
+// Person.prototype.calculateAge = function(){
+//         const diff = Date.now() - this.birthday.getTime()
+//         const wa = new Date(diff)
+//         return Math.abs(wa.getUTCFullYear() - 1970)
+// }
+
+// Person.prototype.getFullName = function(lastName){
+//     this.lastName = lastName
+//     return this.lastName +' '+ this.Name
+// }
+
+
+// const Arash = new Person('Arash', '7/2/2005')
+// console.log(Arash)
+// console.log(Arash.calculateAge())
+// console.log(Arash.getFullName('Arabi'))
+
+const person = function(firstName, lastName){
+    this.firstName = firstName
+    this.lastName = lastName
+}
+person.prototype.greeting = function(){
+    return `hello there ${this.firstName} ${this.lastName}`
 }
 
-// Get Tasks from LS
-function getTasks() {
-  let tasks;
-  if(localStorage.getItem('tasks') === null){
-    tasks = [];
-  } else {
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
+const Arash = new person('Arash', 'Arabi')
 
-  tasks.forEach(function(task){
-    // Create li element
-    const li = document.createElement('li');
-    // Add class
-    li.className = 'collection-item';
-    // Create text node and append to li
-    li.appendChild(document.createTextNode(task));
-    // Create new link element
-    const link = document.createElement('a');
-    // Add class
-    link.className = 'delete-item secondary-content';
-    // Add icon html
-    link.innerHTML = '<i class="fa fa-remove"></i>';
-    // Append the link to li
-    li.appendChild(link);
+console.log(Arash.greeting())
 
-    // Append li to ul
-    taskList.appendChild(li);
-  });
+const customenr = function(firstName, lastName, age, phone){
+    person.call(this, firstName, lastName)
+    this.age = age
+    this.phone = phone
 }
 
-// Add Task
-function addTask(e) {
-  if(taskInput.value === '') {
-    alert('Add a task');
-  }
+customenr.prototype = Object.create(person.prototype)
 
-  // Create li element
-  const li = document.createElement('li');
-  // Add class
-  li.className = 'collection-item';
-  // Create text node and append to li
-  li.appendChild(document.createTextNode(taskInput.value));
-  // Create new link element
-  const link = document.createElement('a');
-  // Add class
-  link.className = 'delete-item secondary-content';
-  // Add icon html
-  link.innerHTML = '<i class="fa fa-remove"></i>';
-  // Append the link to li
-  li.appendChild(link);
+const customenr1 = new customenr('brad', 'doe', 34,+989283848)
 
-  // Append li to ul
-  taskList.appendChild(li);
-
-  // Store in LS
-  storeTaskInLocalStorage(taskInput.value);
-
-  // Clear input
-  taskInput.value = '';
-
-  e.preventDefault();
-}
-
-// Store Task
-function storeTaskInLocalStorage(task) {
-  let tasks;
-  if(localStorage.getItem('tasks') === null){
-    tasks = [];
-  } else {
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
-
-  tasks.push(task);
-
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-}
-
-// Remove Task
-function removeTask(e) {
-  if(e.target.parentElement.classList.contains('delete-item')) {
-    if(confirm('Are You Sure?')) {
-      e.target.parentElement.parentElement.remove();
-
-      // Remove from LS
-      removeTaskFromLocalStorage(e.target.parentElement.parentElement);
-    }
-  }
-}
-
-// Remove from LS
-function removeTaskFromLocalStorage(taskItem) {
-  let tasks;
-  if(localStorage.getItem('tasks') === null){
-    tasks = [];
-  } else {
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
-
-  tasks.forEach(function(task, index){
-    if(taskItem.textContent === task){
-      tasks.splice(index, 1);
-    }
-  });
-
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-}
-
-// Clear Tasks
-function clearTasks() {
-  // taskList.innerHTML = '';
-
-  // Faster
-  while(taskList.firstChild) {
-    taskList.removeChild(taskList.firstChild);
-  }
-
-  // https://jsperf.com/innerhtml-vs-removechild
-
-  // Clear from LS
-  clearTasksFromLocalStorage();
-}
-
-// Clear Tasks from LS
-function clearTasksFromLocalStorage() {
-  localStorage.clear();
-}
-
-// Filter Tasks
-function filterTasks(e) {
-  const text = e.target.value.toLowerCase();
-
-  document.querySelectorAll('.collection-item').forEach(function(task){
-    const item = task.firstChild.textContent;
-    if(item.toLowerCase().indexOf(text) != -1){
-      task.style.display = 'block';
-    } else {
-      task.style.display = 'none';
-    }
-  });
-}
-
-
+console.log(customenr1.greeting())
