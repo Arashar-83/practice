@@ -1,68 +1,42 @@
-// function Person(name ,dob){
-//     this.Name = name
-//     // this.Age = age
-//     this.birthday = new Date(dob)
-//     // console.log(this)
-//     this.caculateAge = function(){
-//         const diff = Date.now() - this.birthday.getTime()
-//         const wa = new Date(diff)
-//         return Math.abs(wa.getUTCFullYear() - 1970)
+// const bookexp = {
+//     exp: function(){
+//         return `read ${this.name} I teache you ${this.sub}`
 //     }
 // }
 
-// const Arash = new Person('arash','2/7/2005')
-// console.log(Arash.caculateAge())
-// // console.log(Arash)
+// const tech = Object.create(bookexp)
+// tech.name = 'tech book'
+// tech.sub = 'technology'
 
-// const name1 = 'brad'
-// const name2 = new String('tom')
-// console.log(typeof name2)
+// const his = Object.create(bookexp)
+// his.name = 'history book'
+// his.sub = 'abute the past'
 
-// function Person(name ,dob){
-//     this.Name = name
-//     // this.Age = age
-//     this.birthday = new Date(dob)
-//     // console.log(this)
-    
-// }
+// console.log(tech.exp())
+// console.log(his.exp())
 
-// Person.prototype.calculateAge = function(){
-//         const diff = Date.now() - this.birthday.getTime()
-//         const wa = new Date(diff)
-//         return Math.abs(wa.getUTCFullYear() - 1970)
-// }
-
-// Person.prototype.getFullName = function(lastName){
-//     this.lastName = lastName
-//     return this.lastName +' '+ this.Name
-// }
-
-
-// const Arash = new Person('Arash', '7/2/2005')
-// console.log(Arash)
-// console.log(Arash.calculateAge())
-// console.log(Arash.getFullName('Arabi'))
-
-const person = function(firstName, lastName){
-    this.firstName = firstName
-    this.lastName = lastName
-}
-person.prototype.greeting = function(){
-    return `hello there ${this.firstName} ${this.lastName}`
+class phone{
+    constructor(name, company, model, color){
+        this.name = name
+        this.company = company
+        this.model = model
+        this.color = color
+    }
+    define(){
+        return `${this.name} is a phone of ${this.company} company and was invented in ${this.model} and it has several colors such as ${this.color}`
+    }
 }
 
-const Arash = new person('Arash', 'Arabi')
+// const iphoneX = new phone('IphoneX','apple','2020','black')
 
-console.log(Arash.greeting())
+// console.log(iphoneX.define())
 
-const customenr = function(firstName, lastName, age, phone){
-    person.call(this, firstName, lastName)
-    this.age = age
-    this.phone = phone
+class tablet extends phone{
+    constructor(name, company, model, color, size){
+        super(name,company,model,color)
+        this.size = size
+    }
 }
 
-customenr.prototype = Object.create(person.prototype)
-
-const customenr1 = new customenr('brad', 'doe', 34,+989283848)
-
-console.log(customenr1.greeting())
+const lenovo = new tablet('lenovo','lenovo','69','blue','356')
+console.log(lenovo.define())
