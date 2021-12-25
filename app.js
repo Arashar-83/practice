@@ -1,14 +1,46 @@
-document.getElementById('button').addEventListener('click', loadP)
+document.getElementById('button1').addEventListener('click', showBook)
+document.getElementById('button2').addEventListener('click', showBooks)
 
-function loadP(){
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'data.txt', true);
+function showBook(e){
+    const xhr = new XMLHttpRequest()
+    xhr.open('Get', 'book.json', true)
     xhr.onload = function(){
-        if(this.status === 200){
-            document.getElementById('output').innerHTML = `<h1>${this.responseText}</h1>`;
+        if (this.status === 200) {
+           const book = JSON.parse(this.responseText)
+           const output = 
+           `
+           <ul>
+           <li>${book.id}
+           <li>${book.name}
+           <li>${book.topic}
+           </ul>
+           `
+           document.getElementById('book').innerHTML = output
         }
-        if(this.status === 404){
-            alert('file does not found')
+    }
+    xhr.send()
+}
+
+function showBooks(e){
+    const xhr = new XMLHttpRequest()
+    xhr.open('Get', 'books.json', true)
+    xhr.onload = function(){
+        if (this.status === 200) {
+           const books = JSON.parse(this.responseText)
+
+           let output = '';
+
+        books.forEach(function(book){
+           output += `
+           <ul>
+           <li>${book.id}
+           <li>${book.name}
+           <li>${book.topic}
+           </ul>
+           `;
+           })
+
+           document.getElementById('books').innerHTML = output
         }
     }
     xhr.send()
