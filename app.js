@@ -1,47 +1,28 @@
-document.getElementById('button1').addEventListener('click', showBook)
-document.getElementById('button2').addEventListener('click', showBooks)
+document.querySelector('.get-jokes').addEventListener('click', getJokes)
 
-function showBook(e){
+function getJokes(e){
+    const number = document.querySelector('input[type="number"]').value;
     const xhr = new XMLHttpRequest()
-    xhr.open('Get', 'book.json', true)
+    xhr.open('GET', `http://api.icndb.com/jokes/random/${number}`, true)
+
     xhr.onload = function(){
         if (this.status === 200) {
-           const book = JSON.parse(this.responseText)
-           const output = 
-           `
-           <ul>
-           <li>${book.id}
-           <li>${book.name}
-           <li>${book.topic}
-           </ul>
-           `
-           document.getElementById('book').innerHTML = output
+            const response = JSON.parse(this.responseText)
+            let output = ''
+            if (response.type === 'success') {
+               response.value.forEach(function(joke){
+                   output += `<li>${joke.joke}</li>`
+               })
+            }else{
+                output += '<i>something went wrong</i>'
+            }
+            document.querySelector('.jokes').innerHTML = output
         }
     }
+    
+
+    
+    
     xhr.send()
-}
-
-function showBooks(e){
-    const xhr = new XMLHttpRequest()
-    xhr.open('Get', 'books.json', true)
-    xhr.onload = function(){
-        if (this.status === 200) {
-           const books = JSON.parse(this.responseText)
-
-           let output = '';
-
-        books.forEach(function(book){
-           output += `
-           <ul>
-           <li>${book.id}
-           <li>${book.name}
-           <li>${book.topic}
-           </ul>
-           `;
-           })
-
-           document.getElementById('books').innerHTML = output
-        }
-    }
-    xhr.send()
+    e.preventDefault()
 }
