@@ -1,28 +1,26 @@
-document.querySelector('.get-jokes').addEventListener('click', getJokes)
+const posts = [
+    {title: 'Post One',body: 'this is post one'},
+    {title: 'Post Tow', body: 'this is post two'}
+]
 
-function getJokes(e){
-    const number = document.querySelector('input[type="number"]').value;
-    const xhr = new XMLHttpRequest()
-    xhr.open('GET', `http://api.icndb.com/jokes/random/${number}`, true)
-
-    xhr.onload = function(){
-        if (this.status === 200) {
-            const response = JSON.parse(this.responseText)
-            let output = ''
-            if (response.type === 'success') {
-               response.value.forEach(function(joke){
-                   output += `<li>${joke.joke}</li>`
-               })
-            }else{
-                output += '<i>something went wrong</i>'
-            }
-            document.querySelector('.jokes').innerHTML = output
-        }
-    }
-    
-
-    
-    
-    xhr.send()
-    e.preventDefault()
+function createPost(post, callback){
+   setTimeout(function(){
+       posts.push(post)
+       callback()
+   }, 3000)
 }
+
+function getPosts(){
+    setTimeout(function(){
+        let output = ''
+    posts.forEach(function(post){
+        output += `<li>${post.title}</li>`
+    })
+    document.body.innerHTML = output
+    }, 2000)
+}
+
+createPost({title:'Post Three', body:'this is post three'}, getPosts)
+
+
+
